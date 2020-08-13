@@ -1,0 +1,79 @@
+.menu{
+    text-align: center;
+    justify-content: center;
+}
+
+.menu__select{
+    font-size: $font-size-m;
+    padding: $size-s;
+    width: 20%;
+    font-weight: 500;
+    margin: $size-s 0;
+    border:none;
+    background-color: #184080 ;
+    color: white;
+    border-bottom: .5rem solid darken(#859ec7, 10%);
+}
+
+.menu__header{
+    background-color: darken($color: #dd0000, $amount: 20%);
+    display: flex;
+    justify-content: space-evenly;
+    padding: $size-s 0;
+    &-label{
+        color: #fff;
+        font-size: $font-size-m;
+        flex: 25%;
+    }
+}
+
+.menu__item{
+    background-color: #5ae766;
+    color: #3905df;
+    padding: $size-s;
+    margin: $size-s 0;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    box-shadow: .4rem .4rem .2rem #000000;
+    transition: box-shadow .5s, background-color .5s;
+    &:hover{
+        box-shadow: .6rem .6rem .3rem #000000;
+        background-color: darken( #5ae766, 20%);
+    }
+}
+
+.menu__item-label{
+    font-size: $font-size-m;
+    width: 25%;
+    word-break: break-all;
+    align-self: center;
+    &--name{
+        text-align: center;
+        width: 100%;
+    }
+    &--price{
+        text-align: center;
+        width: 100%;
+    }
+}
+
+.menu__item-input{
+    flex-grow: 1;
+    align-self: center;
+   &--checkbox{
+       cursor: pointer;
+       width: $size-l;
+       height: $size-l;
+   }
+   &--number{
+        font-size: $font-size-m;
+   }
+}
+
+
+@media screen and (max-width: 650px){
+    .menu__select{
+        width: 40%;
+    }
+}

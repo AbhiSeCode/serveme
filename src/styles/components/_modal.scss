@@ -1,0 +1,19 @@
+.ReactModal__Content{
+    text-align: center;
+    align-items: center;
+    height: 50%;
+}
+
+.ReactModalPortal .ReactModal__Overlay{
+    display: flex;
+    justify-content: center;  //horizontal
+    align-items: center; //vertical 
+    transition: opacity 200ms ease-in-out;
+}
+
+.modal{
+    background-color: white;
+    outline: none;
+    width: 20rem;
+    height: 14rem;
+}

@@ -1,0 +1,27 @@
+.button{
+    display: flex;
+    justify-content: center;
+    margin: $size-m;
+}
+
+.button__element{
+    font-size: $font-size-m;
+    font-weight: 600;
+    background-color: #7879ad ;
+    box-shadow: .3rem .3rem .2rem darken(#000000, 5%);
+    width: 30%;
+    border: none;
+    padding: $size-s;
+    transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
+    &:hover{
+        background-color: #42f587;
+        box-shadow: .5rem .5rem .2rem darken(#000000, 5%);
+        color: #2d00f8;
+    }
+}
+
+@media screen and (max-width: $size-mobile){
+    .button__element{
+        width: 50%;
+    }
+}

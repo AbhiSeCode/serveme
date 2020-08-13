@@ -1,0 +1,43 @@
+.header{
+    font-size: $font-size-l;
+}
+
+.header__link{
+    display: inline-block;
+    text-decoration: none;
+    color: #BADA55;
+    padding: $size-s $size-m;
+    transition: color .2s, background-color .3s ease-in-out, text-shadow .3s;
+    &:hover{
+        text-shadow: .2rem .2rem .2rem #0061bb;
+        color: #ffffff;
+    }
+}
+
+.header__active{
+    color: #ffffff;
+    text-decoration: none;
+    text-shadow: .2rem .2rem .2rem #0061bb;
+}
+
+.header__logo{
+    display: block;
+    text-align: center;
+    background-color: #1f2122;
+}
+
+.header__image{
+        width: 20rem;
+}
+
+.header__nav{
+    background-color: #1d1d1d;
+    text-align: center;
+}
+
+
+@media screen and (max-width: $size-mobile){
+    .header__link{
+        margin: 0;
+    }
+}
