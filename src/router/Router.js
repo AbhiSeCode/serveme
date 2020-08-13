@@ -27,7 +27,7 @@ const Router = ()=>{
                         <PublicRoute path= "/menu" component={Menu}/>
                         <PublicRoute path="/login" component={Login}/>
                         <PublicRoute path="/signup" component={SingUp}/>
-                        <PublicRoute path= "/additem" component={AddingItem}/>
+                        {/* <PublicRoute path= "/additem" component={AddingItem}/> */}
                         <PrivateRoute path="/user/dashboard" component={Dashboard}/>
                         <PrivateRoute path= "/user/menu" component={Menu}/>
                         <PrivateRoute path= "/user/profile" component={Profile}/>
