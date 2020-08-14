@@ -12,7 +12,7 @@ const AddingItem = ()=>{
         e.preventDefault()
        console.log(e)
         try{
-            axios.post('http://localhost:8080/item/add', { name, price, time, category})
+            axios.post('/item/add', { name, price, time, category})
             .then(res=> console.log(res.statusText))
             .catch(e=> console.log(e))        
         }catch(e){

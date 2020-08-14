@@ -22,7 +22,7 @@ const Dashboard= ()=>{
         }
         else{
             const getOrders= async() =>{
-                await axios.get(`${process.env.baseUrl}/user/dashboard`, {
+                await axios.get('/user/dashboard', {
                     headers:{
                     'Authorization' : `Bearer ${Cookies.get('token')}`
                     }

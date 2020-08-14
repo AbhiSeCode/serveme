@@ -11,7 +11,7 @@ const ConfirmOrder=(props)=>{
     let total=0
 
     useEffect(()=>{ 
-        axios.post(`${process.env.baseUrl}/item/ordereditems`, {items: order})
+        axios.post('/item/ordereditems', {items: order})
         .then(res=> setItems(res.data))
         .catch((err)=>console.log(err.response.data))
     },[order])
@@ -19,7 +19,7 @@ const ConfirmOrder=(props)=>{
     const confirmOrder= async() =>{
         const timestamp = moment.utc().format('X')
         console.log({order, timestamp})
-        axios.post(`${process.env.baseUrl}/order/confirmOrder`,{order, timestamp},{
+        axios.post('/order/confirmOrder',{order, timestamp},{
             headers:{
                 'Authorization' : `Bearer ${Cookies.get('token')}`
             }   

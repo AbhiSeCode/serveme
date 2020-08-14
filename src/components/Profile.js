@@ -20,7 +20,7 @@ const Profile= ()=>{
     const header = {'Authorization' : `Bearer ${Cookies.get('token')}`}
 
     const settingPage=()=>{
-        axios.get(`${process.env.baseUrl}/user/me`, {headers:header})
+        axios.get('/user/me', {headers:header})
         .then(res=>{
             setUsername(res.data.username)
             setMobile(res.data.mobile)
@@ -58,7 +58,7 @@ const Profile= ()=>{
                 }
                 else if(!oldPassword){
                     const data= {username, mobile, address, dob: moment.utc(dob).format('X')}
-                    axios.patch(`${process.env.baseUrl}/user/me`, data, {headers: header})
+                    axios.patch('/user/me', data, {headers: header})
                     .then(res=>alert('Profile Updated'))
                     .catch(e=>alert(e.response.data))
                     setOldPassword('')
@@ -67,7 +67,7 @@ const Profile= ()=>{
                 }
                 else{
                     const data= {username, mobile, address, dob: moment.utc(dob).format('X'), password: newPassword, oldPassword}
-                    axios.patch(`${process.env.baseUrl}/user/me`, data, {headers: header})
+                    axios.patch('/user/me', data, {headers: header})
                     .then(res=>alert('Profile Updated'))
                     .catch(e=>alert(e.response.data))
                     setOldPassword('')

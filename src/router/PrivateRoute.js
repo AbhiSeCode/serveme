@@ -7,7 +7,7 @@ import axios from 'axios';
 const PrivateRoutes = (props) =>{
     const {auth, setAuth}= useContext(Auth)
     const logout = () =>{
-        axios.delete(`${process.env.baseUrl}/user/logout`, {headers: {
+        axios.delete('/user/logout', {headers: {
             'Authorization' : `Bearer ${Cookies.get('token')}`
             }})
         .then(()=>{

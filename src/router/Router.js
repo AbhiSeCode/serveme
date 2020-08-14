@@ -24,7 +24,7 @@ const Router = ()=>{
             <Auth.Provider value={{auth, setAuth}}>
                 <Switch>
                         <PublicRoute path="/" component={Home} exact={true}/>
-                        <PublicRoute path= "/menu" component={Menu}/>
+                        <PublicRoute path= "/menu" component={Menu} exact={true}/>
                         <PublicRoute path="/login" component={Login}/>
                         <PublicRoute path="/signup" component={SingUp}/>
                         {/* <PublicRoute path= "/additem" component={AddingItem}/> */}

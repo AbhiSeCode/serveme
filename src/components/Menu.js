@@ -13,7 +13,7 @@ const Menu = ()=>{
 
 
     const getMenu=()=>{
-        axios.get(`${process.env.baseUrl}/order/menu/${category}`)        
+        axios.get(`/order/menu/${category}`)        
         .then(res=>setItems(res.data))
     }
 

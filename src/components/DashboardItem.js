@@ -13,7 +13,7 @@ const DashboardItem = (orderNo)=>{
             history.push('/user/dashboard')
         }
         else{
-            axios.post(`${process.env.baseUrl}/item/ordereditems`, {items : orderNo.location.data.order})
+            axios.post('/item/ordereditems', {items : orderNo.location.data.order})
             .then(res=> setData(res.data))
         }
     }

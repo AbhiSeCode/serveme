@@ -41,7 +41,7 @@ const SignUp =()=>{
                 password,
                 username
             }
-            await axios.post(`${process.env.baseUrl}user/signup`, userData)
+            await axios.post('/user/signup', userData)
             .then((res)=>{
                 Cookies.set('token', res.data.token, {expires : 7})
                 setAuth(true)

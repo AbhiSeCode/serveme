@@ -13,7 +13,7 @@ const Login = ()=>{
     const onSubmit= async (e)=>{
         e.preventDefault()
         const data= {email, password} 
-         await axios.post(`${process.env.baseUrl}/user/login`, data)
+         await axios.post('/user/login', data)
          .then(res=>{
              Cookies.set('token', res.data, {expires : 7})
              setAuth(true)
