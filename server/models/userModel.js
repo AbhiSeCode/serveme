@@ -1,3 +1,5 @@
+/* eslint-disable no-throw-literal */
+
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const validator= require('validator');
@@ -41,7 +43,6 @@ const userSchema= new mongoose.Schema({
         type: Number,
         require: true,
         trim: true,
-        trim: true
     },
     password:{
         type: String,
@@ -59,6 +60,7 @@ const userSchema= new mongoose.Schema({
 })
 
 userSchema.pre('save',async function(next){
+    console.log('in')
     const mobile= this.mobile.toString()
     if(!validator.isEmail(this.email)){
         throw 'Email is not valid!'

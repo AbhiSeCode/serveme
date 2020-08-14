@@ -28,7 +28,7 @@ const Profile= ()=>{
             setDob(moment.unix(res.data.dob).format('YYYY-MM-DD'))
             setAddress(res.data.address)
         })
-        .catch(console.log)
+        .catch(err=>alert(err.response.data))
     }
 
     useEffect(settingPage, [])

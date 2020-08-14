@@ -1,6 +1,5 @@
 const express= require('express');
 const Item= require('../models/itemModel');
-const auth = require('../middleware/auth');
 
 const router = express.Router()
 
@@ -16,7 +15,6 @@ router.post('/add', async (req, res)=>{
 
 router.post('/ordereditems', async(req,res)=>{
     try{
-        console.log(req.body)
         const items= req.body.items
         const finalItems= await Item.gettingItems(items)
         res.status(200).send(finalItems)

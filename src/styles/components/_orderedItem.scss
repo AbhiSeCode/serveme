@@ -48,3 +48,15 @@
 }
 
 
+@media screen and (max-width: 650px){
+    .order-header{
+        font-size: $font-size-m;
+    }
+    .order-detail{
+        font-size: $font-size-s;
+    }
+    .order-item{
+        font-size: $font-size-s;
+    }
+}
+

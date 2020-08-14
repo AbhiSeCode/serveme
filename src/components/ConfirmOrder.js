@@ -18,7 +18,6 @@ const ConfirmOrder=(props)=>{
 
     const confirmOrder= async() =>{
         const timestamp = moment.utc().format('X')
-        console.log({order, timestamp})
         axios.post('/order/confirmOrder',{order, timestamp},{
             headers:{
                 'Authorization' : `Bearer ${Cookies.get('token')}`
@@ -26,7 +25,6 @@ const ConfirmOrder=(props)=>{
         })
         .then((res)=>{
             alert('Your Food is ordered. :)')
-            console.log(res)
             history.push('/user/dashboard')
         })
         .catch(err=>console.log(err.response.data))    

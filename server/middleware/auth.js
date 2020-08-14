@@ -7,6 +7,7 @@ const auth = async (req,res,next) =>{
         const decoded= jwt.verify(token, 'thisismytoken')
         const user =  await User.findOne({_id: decoded._id, 'tokens.token': token})
         if(!user){
+            // eslint-disable-next-line no-throw-literal
             throw 'Please Authenticate'
         }
         req.token = token
