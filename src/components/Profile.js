@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie'
 import moment from 'moment'
+import sweet from 'sweetalert2'
+import { useHistory } from 'react-router-dom';
 
 const Profile= ()=>{
     const [username, setUsername]= useState('')
@@ -15,6 +17,7 @@ const Profile= ()=>{
     const [oldPassword, setOldPassword]= useState('')
     const [newPassword, setNewPassword]= useState('')
     const [confirmPassword, setConfirmPassword]= useState('')
+    const history = useHistory()
 
     
     const header = {'Authorization' : `Bearer ${Cookies.get('token')}`}
@@ -28,7 +31,9 @@ const Profile= ()=>{
             setDob(moment.unix(res.data.dob).format('YYYY-MM-DD'))
             setAddress(res.data.address)
         })
-        .catch(err=>alert(err.response.data))
+        .catch(e=>sweet.fire({title:'Error Occur!', text: 'An unusual error occur',icon: 'error'})
+            .then(ok=>history.push('/'))
+        )
     }
 
     useEffect(settingPage, [])
@@ -44,12 +49,9 @@ const Profile= ()=>{
             setMsg('Password Matched ✔')
         }},[confirmPassword, newPassword])
 
-
     const updateUser = (e) =>{
         e.preventDefault()
         if(!editFlag){
-                setButtonText('Edit')
-                setEditFlag(true)
                 if(newPassword !== confirmPassword){
                     alert("Your Passwords didn't match")
                     setOldPassword('')
@@ -59,8 +61,10 @@ const Profile= ()=>{
                 else if(!oldPassword){
                     const data= {username, mobile, address, dob: moment.utc(dob).format('X')}
                     axios.patch('/user/me', data, {headers: header})
-                    .then(res=>alert('Profile Updated'))
-                    .catch(e=>alert(e.response.data))
+                    .then(res=>sweet.fire({title:'Profile Updated',icon: 'success'}))
+                    .catch(err=>sweet.fire({title:'Error Occur!!', text: 'An unusual error occur',icon: 'error'})
+                        .then(ok=>history.pushState('/'))
+                    )
                     setOldPassword('')
                     setNewPassword('')
                     setConfirmPassword('')
@@ -68,12 +72,14 @@ const Profile= ()=>{
                 else{
                     const data= {username, mobile, address, dob: moment.utc(dob).format('X'), password: newPassword, oldPassword}
                     axios.patch('/user/me', data, {headers: header})
-                    .then(res=>alert('Profile Updated'))
-                    .catch(e=>alert(e.response.data))
+                    .then(res=>sweet.fire({title:'Profile Updated',icon: 'success'}))
+                    .catch(err=>sweet.fire({title:'Error!!', text: err.response.data ,icon: 'error'}))
                     setOldPassword('')
                     setNewPassword('')
                     setConfirmPassword('')
                 }
+                setEditFlag(true)
+                setButtonText('Edit')
         }
         else{
             setEditFlag(false)
@@ -106,7 +112,7 @@ const Profile= ()=>{
                     <input type='text' name="contact" minLength="10" readOnly={editFlag} required={true} value={mobile} onChange={(e)=>setMobile(e.target.value)} className="form__input"/>
                 </div>
                 {editFlag?<p></p>:
-                    <fieldset>
+                    <fieldset className="form__fieldSet">
                         <legend>Reset Your Password</legend>
                         <div className="form__element">
                             <label className="form__label">Old Password</label>

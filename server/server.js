@@ -17,31 +17,26 @@ const orderRouter= require('./routes/order');
 
 
 const port= process.env.PORT ||8080
-app.use(express.static(path.join(__dirname, '../', 'build')));
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, '../', 'build', 'index.html'),(err)=>{
-    if (err) {
-      res.status(500).send(err)
-    }
+app.use(express.static(path.join(__dirname, '../build')));
 
-  })
+//connecting to database
+const uri= process.env.ATLAS_URI
+mongoose.connect(uri, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology:true, useFindAndModify:false})
+const connection= mongoose.connection
+connection.once('open', ()=>{
+  console.log('database connected successsfully')
+})
+
+
+app.use('/user', userRouter)
+app.use('/order', orderRouter)
+app.use('/item', itemRouter)
+
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, '../build', 'index.html'));
 });
-
   
-  //connecting to database
-  const uri= process.env.ATLAS_URI
-  mongoose.connect(uri, {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology:true, useFindAndModify:false})
-  const connection= mongoose.connection
-  connection.once('open', ()=>{
-    console.log('database connected successsfully')
-  })
-  
-  
-  app.use('/user', userRouter)
-  app.use('/order', orderRouter)
-  app.use('/item', itemRouter)
-
-  app.use(logger('dev'));
+app.use(logger('dev'));
 
 
 app.listen(port, ()=>{

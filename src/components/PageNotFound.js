@@ -2,7 +2,9 @@ import React from 'react';
 
 const PageNotFound = () =>{
     return (
-        <p>Page not Found!!</p>
+        <div className="page">
+            <p className="page__title">Page not Found!!</p>
+        </div>
     )
 }
 

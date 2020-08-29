@@ -24,22 +24,22 @@ const DashboardItem = (orderNo)=>{
     }
     else{
         return (            
-            <div className="page">
+            <div>
                 <h1 className="page__title">Ordered Item</h1>
                 <div className="order-header">
-                    <div> Item Name</div>
-                    <div> Item Price</div>
-                    <div> Item Quantity</div>
-                    <div> Item Total Price</div>
+                    <div className="order-header__content"> Item Name</div>
+                    <div className="order-header__content"> Item Price</div>
+                    <div className="order-header__content"> Item Quantity</div>
+                    <div className="order-header__content"> Item Total Price</div>
                 </div>
                     {data.map((item)=>{
                         total += item.totalPrice
                         return(
                         <div className="order-item" key={item.name}>
                             <div className="order-item__content">{item.name}</div> 
-                            <div className="order-item__content">{item.price}</div>
+                            <div className="order-item__content">{item.price}₹</div>
                             <div className="order-item__content">{item.quantity} </div>
-                            <div className="order-item__content">{item.totalPrice}</div>
+                            <div className="order-item__content">{item.totalPrice}₹</div>
                         </div>
                         )}
                     )} 

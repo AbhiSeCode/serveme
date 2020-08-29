@@ -1,4 +1,6 @@
 .menu{
+    margin: 0 $size-s;
+    padding: 0;
     text-align: center;
     justify-content: center;
 }
@@ -11,64 +13,49 @@
     margin: $size-s 0;
     border:none;
     background-color: #184080 ;
-    color: white;
+    color: #ffffff;
     border-bottom: .5rem solid darken(#859ec7, 10%);
 }
 
-.menu__header{
-    background-color: darken($color: #dd0000, $amount: 20%);
+.menu__item{
+    backdrop-filter: opacity(.9) blur(2px);
+    color: #000000;
     display: flex;
-    justify-content: space-evenly;
-    padding: $size-s 0;
-    &-label{
-        color: #fff;
-        font-size: $font-size-m;
-        flex: 25%;
-    }
+    font-weight: bold;
+    margin: $size-s;
+    padding: $size-s;
+    justify-content: space-between;
+    box-shadow: .2rem .2rem .4rem darken(#000000, 10%);
+    font-size: $font-size-m;
 }
 
-.menu__item{
-    background-color: #5ae766;
-    color: #3905df;
+.menu__item-element{
     padding: $size-s;
-    margin: $size-s 0;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: flex-start;
-    box-shadow: .4rem .4rem .2rem #000000;
-    transition: box-shadow .5s, background-color .5s;
-    &:hover{
-        box-shadow: .6rem .6rem .3rem #000000;
-        background-color: darken( #5ae766, 20%);
-    }
+    flex-grow: 1;
+    text-align: left;
+    word-break: break-word;
+    align-self: center;
 }
 
 .menu__item-label{
-    font-size: $font-size-m;
-    width: 25%;
-    word-break: break-all;
-    align-self: center;
-    &--name{
-        text-align: center;
-        width: 100%;
-    }
-    &--price{
-        text-align: center;
-        width: 100%;
-    }
+    display: block;
+    margin: $size-s 0;
+    
 }
 
 .menu__item-input{
-    flex-grow: 1;
-    align-self: center;
-   &--checkbox{
-       cursor: pointer;
-       width: $size-l;
-       height: $size-l;
-   }
-   &--number{
+    text-align: end;
+    margin: .5rem 0;
+    &--number{
+        text-align: center;
         font-size: $font-size-m;
-   }
+        font-weight: 500;
+    }
+    &--checkbox{
+        font-size: $font-size-l;
+        width: $size-l;
+        height: $size-l;
+    }
 }
 
 
@@ -76,4 +63,6 @@
     .menu__select{
         width: 40%;
     }
+   
+    
 }

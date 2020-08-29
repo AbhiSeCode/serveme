@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {useHistory} from 'react-router-dom';
 import Cookies from 'js-cookie';
+import LoadingModal from './LoadingModal';
+import sweet from 'sweetalert2';
 
 const Menu = ()=>{
     const [category, setCategory]= useState('breakfast')
@@ -18,13 +20,16 @@ const Menu = ()=>{
     }
 
     const placeOrder=()=>{
-        if(Cookies.get('token')){
+        if(order.length===0){
+            return sweet.fire({title: 'Empty!!', text:'Select atleast one item', icon: 'info'})
+        }
+        else if(Cookies.get('token')){
            history.push({pathname:'/user/confirmOrder', state:order})
         }
         else{
             Cookies.set('order', order)
-            alert('Please Login/Signup to proceed.')
-            history.push('/login')
+            sweet.fire({title: 'One More Step' ,text:'Please Login/Signup to proceed.',icon: 'info'})
+            .then(button=>history.push('/login'))     
         }
     }
 
@@ -39,8 +44,14 @@ const Menu = ()=>{
     
     useEffect(getMenu ,[category])
 
+    if(items.length===0){
+        return (
+            <LoadingModal/>
+        )
+    }
+    else{
     return(
-        <div className="page">
+        <div>
             <h1 className="page__title">MENU</h1>
             <div className="menu">
                     <select className="menu__select" onChange={(e)=>setCategory(e.target.value)}>
@@ -48,27 +59,21 @@ const Menu = ()=>{
                         <option value="lunch">Lunch</option>
                         <option value="dinner">Dinner</option>
                     </select>
-                    <div className="menu__header">
-                        <label className="menu__header menu__header-label" >Name</label>
-                        <label className="menu__header menu__header-label" >Price</label>
-                        <label className="menu__header menu__header-label" >Quantity(5 is Max)</label>
-                        <label className="menu__header menu__header-label" >Select</label>
-                    </div>
                     {items.map((item)=>(
                         <div key={item._id} className="menu__item">
-                            <div className="menu__item-label">
-                                <div className="menu__item-label menu__item-label--name"><label>{item.name}</label></div>
+                            <div className="menu__item-element">
+                                <label className="menu__item-label">{item.name}</label>
+                                <label className="menu__item-label">{item.price}₹</label>
                             </div>
-                            <div className="menu__item-label">
-                                <div className="menu__item-label menu__item-label--price"><label>{item.price}₹</label></div>
-                            </div>
-                            <div className="menu__item-input">
-                                <input className="menu__item-input menu__item-input--number" type="number" defaultValue="1"  min="1" max="5" onChange={e=>quan=e.target.value} />
-                            </div>
-                            <div className="menu__item-input">
-                                {order.find(index =>index.id === item._id)
-                                ?  <input className="menu__item-input menu__item-input--checkbox" checked={true} type="checkbox" onChange={(e)=>preparingOrder(e.target.checked, {id: item._id, quan})}/>
-                                : <input className="menu__item-input menu__item-input--checkbox" checked={false}  type="checkbox" onChange={(e)=>preparingOrder(e.target.checked, {id: item._id, quan})}/>}
+                            <div className="menu__item-element">
+                                <div className="menu__item-input">
+                                    <input className="menu__item-input menu__item-input--number"  type="number" defaultValue="1"  min="1" max="9" onChange={e=>quan=e.target.value} />
+                                </div>
+                                <div className="menu__item-input">
+                                    {order.find(index =>index.id === item._id)
+                                    ?  <input className="menu__item-input menu__item-input--checkbox" checked={true} type="checkbox" onChange={(e)=>preparingOrder(e.target.checked, {id: item._id, quan})}/>
+                                    : <input className="menu__item-input menu__item-input--checkbox" checked={false}  type="checkbox" onChange={(e)=>preparingOrder(e.target.checked, {id: item._id, quan})}/>}
+                                </div>
                             </div>
                         </div>
                     ))}
@@ -78,6 +83,7 @@ const Menu = ()=>{
             </div>
         </div>    
     )
+ }
 }
 
 export {Menu as default}

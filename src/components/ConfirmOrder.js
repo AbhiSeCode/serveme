@@ -3,6 +3,7 @@ import axios from 'axios';
 import moment from 'moment'
 import { useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import sweet from 'sweetalert2';
 
 const ConfirmOrder=(props)=>{
     const order= props.location.state
@@ -24,19 +25,19 @@ const ConfirmOrder=(props)=>{
             }   
         })
         .then((res)=>{
-            alert('Your Food is ordered. :)')
-            history.push('/user/dashboard')
+            sweet.fire({title:' Your Food is ordered', icon:"success"})
+            .then(ok=>history.push('/user/dashboard'))
         })
-        .catch(err=>console.log(err.response.data))    
+        .catch(err=>sweet.fire({title: err.response.data, icon: 'error'}))    
     }
     return(
-        <div className="page">
+        <div>
             <h1 className="page__title">Confirm Order</h1>
             <div className="order-header">
-                    <div> Item Name</div>
-                    <div> Item Price</div>
-                    <div> Item Quantity</div>
-                    <div> Item Total Price</div>
+                    <div className="order-header__content"> Item Name</div>
+                    <div className="order-header__content"> Item Price</div>
+                    <div className="order-header__content"> Item Quantity</div>
+                    <div className="order-header__content"> Item Total Price</div>
                 </div>
                 
             {items.map((item)=>{

@@ -3,22 +3,25 @@ import axios from 'axios';
 import {NavLink} from 'react-router-dom';
 import Cookies from 'js-cookie';
 import Auth from '../context/auth';
+import sweet from 'sweetalert2';
+
+
 
 const Login = ()=>{
     const [email, setEmail]= useState('')
     const [password, setPassword]= useState('')
-    const [error, setError]=useState('')
     const {setAuth} = useContext(Auth)
 
     const onSubmit= async (e)=>{
         e.preventDefault()
-        const data= {email, password} 
+        const data= {email, password}
          await axios.post('/user/login', data)
          .then(res=>{
              Cookies.set('token', res.data, {expires : 7})
              setAuth(true)
             })
-         .catch(e=> setError(e.response.data))
+         .catch(e=> sweet.fire({text: e.response.data, icon : 'error'})
+                .then(ok=>setPassword('')))
     }
     
     return(
@@ -31,14 +34,13 @@ const Login = ()=>{
                 </div> 
                 <div className="form__element">
                     <label className="form__label">Password:</label>
-                    <input type="password" placeholder="*********" name="password" className="form__input" minLength={7} maxLength={16} onChange={(e)=>{setPassword(e.target.value) 
-                        setError('')}} required={true}/>
+                    <input type="password" placeholder="*********" name="password" value={password} className="form__input" minLength={7} maxLength={16} onChange={(e)=>{setPassword(e.target.value)}} required={true}/>
                 </div>
-                <p className="form__msg">{error}</p>
                 <div className="button">
                     <button className="button__element">Login</button>
                 </div>
             </form>
+            <p className="form__link"><NavLink to="/forgetpassword">Forget Password??</NavLink></p>
             <p className="form__link">New Here ?? Click <NavLink to='/signup'>Here</NavLink> to register.</p>
         </div>
     )

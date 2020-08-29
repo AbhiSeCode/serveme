@@ -1,15 +1,20 @@
+
 .page{
-    margin: 0 $size-m;
-    
+    background-image: url('/img/menu_back.jpg');
+    background-size: cover;
+    background-position: center, center;
+    min-height: 98vh;
 }
 
 
 .page__title{
+    margin: 0;
+    padding: $size-l;
     text-align: center;
     font-size: $font-size-xl;
     font-weight: 400;
     color: #ff0000;
-    text-shadow: .4rem .4rem .2rem darken(#e7e7e7, 20%);
+    text-shadow: .2rem .2rem .2rem #000000;
 }
 
 .page__content{
@@ -17,6 +22,7 @@
 }
 
 .page__text{
+    margin:$size-s;
     font-size: $font-size-m;
     font-weight: 300;
     word-break: break-word;
@@ -31,4 +37,8 @@
     color: #2e27b0;
     justify-content: center;
     text-align: center;
+}
+
+@media screen and (max-width: 650px){
+    
 }

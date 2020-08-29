@@ -3,6 +3,8 @@ import axios from 'axios';
 import moment from 'moment';
 import Auth from '../context/auth';
 import Cookies from 'js-cookie';
+import sweet from 'sweetalert2';
+
 const SignUp =()=>{
     const [address, setAddress]= useState('')
     const [mobile, setMobile]= useState('')
@@ -28,9 +30,11 @@ const SignUp =()=>{
     const onSubmit = async(e)=>{
         e.preventDefault()
        if(password !== confirmPassword){
-            alert("Your Passwords don't match")
-            setPassword('')
-            setConfirmPassword('')
+            sweet.fire({text: "Your Passwords don't match", icon: 'error'})
+            .then(ok=>{
+                setPassword('')
+                setConfirmPassword('')}
+            )
         }
         else{
             const userData= {
@@ -41,13 +45,16 @@ const SignUp =()=>{
                 password,
                 username
             }
+            console.log(typeof userData.mobile)
             await axios.post('/user/signup', userData)
             .then((res)=>{
-                Cookies.set('token', res.data.token, {expires : 7})
-                setAuth(true)
-                alert('Account Created')
+                sweet.fire({title: 'Account Created',icon:'success'})
+                .then(ok=>{
+                    Cookies.set('token', res.data.token, {expires : 7})
+                    setAuth(true)
+                })
             })
-            .catch(e=> alert(e.response.data))
+            .catch(e=> sweet.fire({title:e.response.data, icon: 'error'}))
         }
     }
     
@@ -73,7 +80,7 @@ const SignUp =()=>{
                 </div>
                 <div className="form__element">
                     <label className="form__label">Contact Number*:</label>
-                    <input type='text' placeholder="99XXXXXX10" name="contact" minLength="10" required={true}  className="form__input" onChange={(e)=>setMobile(e.target.value)}/>
+                    <input type='tel' placeholder="99XXXXXX10" name="contact" minLength="10" required={true}  className="form__input" onChange={(e)=>setMobile(e.target.value)}/>
                 </div>
                 <div className="form__element">
                     <label className="form__label">Password*:</label>

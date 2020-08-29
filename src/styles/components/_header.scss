@@ -1,12 +1,40 @@
 .header{
+    background-color: #1f2122;
+    display: flex;
+    justify-content: space-between;
+    padding: $size-s;
+    width: auto;
     font-size: $font-size-l;
 }
 
+.header__mobile{
+    margin: 0 $size-xl;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-self: flex-end;
+}
+
+.header__bar{
+    display: none;
+    width: 10rem;
+}
+.header__nav{
+    display: flex; 
+}
+
+.header__image{
+    width: 20rem;
+}
+.header__logo{
+    display: block;
+}
+
+
 .header__link{
-    display: inline-block;
     text-decoration: none;
     color: #BADA55;
-    padding: $size-s $size-m;
+    padding: $size-m;
     transition: color .2s, background-color .3s ease-in-out, text-shadow .3s;
     &:hover{
         text-shadow: .2rem .2rem .2rem #0061bb;
@@ -20,24 +48,41 @@
     text-shadow: .2rem .2rem .2rem #0061bb;
 }
 
-.header__logo{
-    display: block;
-    text-align: center;
-    background-color: #1f2122;
-}
 
-.header__image{
-        width: 20rem;
-}
 
-.header__nav{
-    background-color: #1d1d1d;
-    text-align: center;
+.header__button{
+    margin-left: auto;
+    font-size: $font-size-m;
+    padding: $size-s;
+    outline: none;
+    border: none;
+    color: #ffffff;
+    background-color: #210099;
+    transition: background-color 1s;
+    &:hover{
+        cursor: pointer;
+        background-color: #ee0000;
+    }  
 }
-
 
 @media screen and (max-width: $size-mobile){
-    .header__link{
-        margin: 0;
+    .header__nav{
+        flex-direction: column;
+        align-self: flex-end;
+        text-align: end;
+        &--show{
+            display:none;
+        }
+    }
+    .header__mobile{
+        margin: 0 0 0 auto;
+        width: 10rem;
+    }
+    .header__button{
+        margin-left: 0;
+    }
+    .header__bar{
+        display: block;
     }
 }
+

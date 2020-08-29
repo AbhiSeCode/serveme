@@ -7,12 +7,13 @@
 .ReactModalPortal .ReactModal__Overlay{
     display: flex;
     justify-content: center;  //horizontal
-    align-items: center; //vertical 
+    align-items: center; //vertical
+    backdrop-filter: opacity .6;
     transition: opacity 200ms ease-in-out;
 }
 
 .modal{
-    background-color: white;
+    background-color: #d4e0f7;
     outline: none;
     width: 20rem;
     height: 14rem;
