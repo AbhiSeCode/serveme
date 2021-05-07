@@ -1,27 +1,165 @@
-.button{
-    display: flex;
-    justify-content: center;
+.menu-btn {
+  font-size: $font-size-s;
+  padding-top: $size-s-m;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
-.button__element{
+.menu__item-btn {
+  background-color: #42f587;
+  box-shadow: 0.1rem 0.1rem 0.5rem 0.2rem #000;
+  border-radius: 0.5rem;
+  outline: none;
+  width: 100px;
+  font-size: $size-m;
+  border: none;
+  margin-top: $size-s;
+  padding: $size-s $size-m;
+  -webkit-tap-highlight-color: transparent;
+  transition: 0.25s;
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0.1rem 0.1rem 0.5rem 0.3rem #000;
+  }
+}
+
+.menu__item-btn.remove {
+  background-color: #eb3e3e;
+  color: #ffffff;
+  padding: $size-s;
+}
+
+.menu-modal .menu__item-btn.remove {
+  box-shadow: none;
+  width: auto;
+}
+
+.menu__item-quantity {
+  width: 100%;
+  padding: 0;
+}
+
+.menuClose-btn {
+  @extend .menu-btn;
+  background: #eb3e3e;
+  color: #fff;
+  border: none;
+  font-size: $font-size-m;
+  border-radius: 50%;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 5;
+}
+
+.placeOrder-btn {
+  @extend .menu__item-btn;
+  width: auto;
+  background-color: #006efd;
+  color: #fff;
+  margin: 0 $size-s;
+  font-size: $font-size-m;
+  animation-name: zoomOutNIn;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+}
+
+@keyframes zoomOutNIn {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.page-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: $size-s;
+  font-size: $font-size-s;
+  font-weight: bold;
+  width: 100%;
+  border: none;
+  outline: none;
+  box-shadow: 0rem 0rem 1rem 0.2rem #000;
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0rem 0rem 1rem 0.3rem #000;
+  }
+  & svg {
+    font-size: $font-size-l;
+  }
+}
+.formClose-btn {
+  background-color: #00000000;
+  border: none;
+  font-size: $size-l;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0;
+  z-index: 5;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.menuQuantity-btn {
+  @extend .menu-btn;
+}
+
+.box-btn {
+  width: 100%;
+  border: none;
+  background-color: #ffffff00;
+  display: grid;
+  place-items: center;
+  color: #000000;
+  -webkit-tap-highlight-color: transparent;
+  text-align: center;
+  font-size: $font-size-l;
+  transition: all 0.25s;
+  &.open {
+    transform: rotate(180deg);
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+.button__auth {
+  font-size: $font-size-m;
+  color: #fff;
+  background-color: #0a0a0a;
+  border-radius: $size-l;
+  width: 150px;
+  outline: none;
+  border: none;
+  margin: $size-s auto;
+  padding: $size-s;
+  transition: 0.25s;
+  &:hover {
+    box-shadow: 0rem 0rem 1rem 0.3rem #fff;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: $size-mobile) {
+  .button__element {
+    width: 50%;
+  }
+  .menuClose-btn {
+    top: 3.5rem;
+    right: 2rem;
+  }
+  .menu-modal .menu__item-btn.remove {
+    margin: $size-s auto;
     font-size: $font-size-m;
-    font-weight: 600;
-    background-color: #7879ad ;
-    box-shadow: .3rem .3rem .2rem darken(#000000, 5%);
-    width: 30%;
-    border: none;
-    margin: $size-s 0;
-    padding: $size-s;
-    transition: background-color 0.3s, box-shadow 0.3s, color 0.3s;
-    &:hover{
-        background-color: #42f587;
-        box-shadow: .5rem .5rem .2rem darken(#000000, 5%);
-        color: #2d00f8;
-    }
-}
-
-@media screen and (max-width: $size-mobile){
-    .button__element{
-        width: 50%;
-    }
+  }
 }

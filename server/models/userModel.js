@@ -7,19 +7,19 @@ const bcrypt= require('bcryptjs');
 
 
 const userSchema= new mongoose.Schema({
-    address:{
+    address:[{
         type: String,
-        require: true,
+        required: true,
         trim: true
-    },
+    }],
     dob:{
         type: String,
-        require: true,
+        required: true,
         trim: true
     },
     email:{
         type: String,
-        require: true,
+        required: true,
         unique: true,
         trim: true
     },
@@ -29,34 +29,34 @@ const userSchema= new mongoose.Schema({
             required: true 
         }
     }],
-    orders:[{
-        order:{
-            type: [Map],
-            of: String
-        }
-    ,
-    timestamp:{
-            type : String
-        }
-    }],
+    orders:[{}],
     mobile:{
         type: Number,
-        require: true,
+        required: true,
         trim: true,
     },
     password:{
         type: String,
-        require: true,
+        required: true,
         trim: true,
         minlength: 7
     },
     username:{
         type: String,
-        require: true,
+        required: true,
+        trim: true
+    },
+    role:{
+        type: String,
+        required: true,
         trim: true
     },
     avatar:{
         type: Buffer
+    },
+    isVerified:{
+        type: Boolean,
+        default: false
     }
 },{
     timestamps: true
@@ -65,10 +65,10 @@ const userSchema= new mongoose.Schema({
 userSchema.pre('save',async function(next){
     const mobile= this.mobile.toString()
     if(!validator.isEmail(this.email)){
-        throw 'Email is Invalid!'
+        throw {_message: 'Email is Invalid!'}
     }
     else if(!validator.isMobilePhone(mobile, ['en-IN'])){
-        throw 'Mobile Number is Invalid!'
+        throw {_message: 'Mobile Number is Invalid!'}
     }
     next()
 })
@@ -84,8 +84,8 @@ userSchema.pre('save', async function(next){
 })
 
 
-userSchema.methods.generateToken= async function(time = '7d'){
-    const token = jwt.sign({_id: this.id.toString()}, process.env.JWT_SIGN, {expiresIn: time})
+userSchema.methods.generateToken= async function(time = '30d'){
+    const token = jwt.sign({_id: this.id.toString(), role: this.role}, process.env.JWT_SIGN, {expiresIn: time})
     this.tokens= this.tokens.concat({token})
     await this.save()
     return token

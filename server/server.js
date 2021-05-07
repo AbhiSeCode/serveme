@@ -12,9 +12,8 @@ app.use(cors())
 
 
 const userRouter = require('./routes/user');
-const itemRouter= require('./routes/item');
 const orderRouter= require('./routes/order');
-
+const menuRouter = require('./routes/menu')
 
 const port= process.env.PORT ||8080
 app.use(express.static(path.join(__dirname, '../build')));
@@ -30,7 +29,7 @@ connection.once('open', ()=>{
 
 app.use('/user', userRouter)
 app.use('/order', orderRouter)
-app.use('/item', itemRouter)
+app.use('/menu', menuRouter)
 
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, '../build', 'index.html'));

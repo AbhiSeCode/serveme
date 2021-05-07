@@ -1,0 +1,36 @@
+.contact-page {
+  background: linear-gradient(to top right, #c9ffbf, #ffafbd);
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.contact-element {
+  margin: $size-s;
+  width: 50%;
+  & iframe {
+    margin: $size-s;
+    height: 250px;
+  }
+  & .form__label {
+    justify-content: flex-start;
+  }
+  & .form__input {
+    margin: $size-m 0;
+    width: 90%;
+  }
+  & img {
+    width: 20rem;
+  }
+}
+
+@media screen and (max-width: $size-mobile) {
+  .contact-page {
+    width: 100%;
+    flex-direction: column-reverse;
+  }
+  .contact-element {
+    width: 100%;
+  }
+}

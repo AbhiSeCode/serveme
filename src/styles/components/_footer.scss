@@ -1,8 +1,21 @@
-.footer{
-    font-size: 1.2rem;
-    width: 100%;
-    bottom: 0;
-    background-color: #000000;
-    text-align: center;
-    color: #ffffff;
+footer {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  background-color: #000000;
+  color: #fff;
+  font-size: 1.2rem;
+  bottom: 0;
+  & a {
+    color: #fff;
+    font-size: $font-size-l;
+  }
+}
+
+.footer-socials {
+  width: 300px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

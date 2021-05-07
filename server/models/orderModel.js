@@ -1,27 +1,37 @@
 const mongoose = require('mongoose');
 
 const orderSchema = new mongoose.Schema({
-    userId:{
+    userName:{
         type:String,
         required: true,
         trim: true
     },
-    employeeId:{
+    userId: {
         type:String,
+        required: true,
         trim: true
+    },
+    orderNumber:{
+        type:String,
+        trim: true,
+        required: true
     },
     status:{
         type:String,
-        required: true,
-        trim: true
+        default: 'placed'
     },
     items:{
-            type: [Map],
-            of: String,
-            required: true
+        type: [Map],
+        of: String,
+        required: true
     },
     amount: {
         type: Number,
+        required: true
+    },
+    time: {
+        type: Number,
+        require: true
     }
 },{
     timestamps: true

@@ -5,10 +5,9 @@ const LoadingModal = () =>{
     return(
         <Modal isOpen={true}
         contentLabel="Loading"
-        className="modal"
-        ariaHideApp= {false}
-        >
-            <img src="/img/loading.gif" alt="Loading"/>
+        className="loading-modal"
+        ariaHideApp= {false}>
+            <img src="/img/loader-2_food.gif" alt="Loading"/>
         </Modal>
     )
 }

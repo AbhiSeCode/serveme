@@ -1,0 +1,59 @@
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.rest {
+  @extend .img;
+  object-position: bottom;
+  height: 100%;
+}
+
+.menu_item-image img {
+  @extend .img;
+}
+
+.profile-image {
+  @extend .img;
+  border-radius: 50%;
+}
+
+.side .rest {
+  border-radius: 2rem;
+  right: auto;
+  margin: 0 $size-s;
+  width: 45%;
+  height: 450px;
+}
+
+.side.left .rest {
+  float: left;
+}
+.side.right .rest {
+  float: right;
+}
+.middle .rest {
+  height: 600px;
+}
+
+.cart-img img {
+  width: 8rem;
+  padding: $size-s;
+  // shape-outside: circle(50%);
+}
+
+.header__image {
+  padding-top: $size-s;
+  width: 15rem;
+}
+.footer-img {
+  width: 20rem;
+}
+@media only screen and (max-width: $size-mobile) {
+  .side .rest {
+    height: 200px;
+    width: 200px;
+  }
+}

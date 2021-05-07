@@ -1,46 +1,39 @@
-import React, {useState, useContext} from 'react';
+import React from 'react';
 import PublicRoute from './PublicRoute';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 import PrivateRoute from './PrivateRoute'
-import Login from '../components/Login'
-import SingUp from '../components/SignUp'
+import ContactUs from '../components/ContactUs'
 import Home from '../components/Home'
 import Menu from '../components/Menu';
-import ConfirmOrder from '../components/ConfirmOrder';
-import Dashboard from '../components/Dashboard';
-import Profile from '../components/Profile';
-import Auth from '../context/auth';
-import DashboardItem from '../components/DashboardItem';
 import PageNotFound from '../components/PageNotFound';
 import Footer from '../components/Footer';
-import ForgetPassword from '../components/ForgetPassword';
+import ForgotPassword from '../components/ForgotPassword';
 import ResetPassword from '../components/ResetPassword';
+import { Header } from '../components/Header';
+import AllOrders from '../components/AllOrders';
+import EmployeeMenu from '../components/EmployeeMenu'
+import Employees from '../components/Employees';
 
 
 
 const Router = ()=>{
-    const [auth, setAuth]= useState(useContext(Auth))
-
     return(
         <BrowserRouter>
-            <Auth.Provider value={{auth, setAuth}}>
+                <Header/>
                 <Switch>
-                        <PublicRoute path="/" component={Home} exact={true}/>
-                        <PublicRoute path= "/menu" component={Menu} exact={true}/>
-                        <PublicRoute path="/login" component={Login}/>
-                        <PublicRoute path="/forgetpassword" component={ForgetPassword} exact={true}/>
-                        <PublicRoute path="/signup" component={SingUp}/>
-                        <PrivateRoute path="/user/dashboard" component={Dashboard}/>
-                        <PrivateRoute path= "/user/menu" component={Menu}/>
-                        <PrivateRoute path= "/user/profile" component={Profile}/>
-                        <PrivateRoute path="/user/orderedItem" component={DashboardItem}/>
-                        <PrivateRoute path="/user/confirmOrder" component={ConfirmOrder}/>
-                        <Route path="/reset/:token" component={ResetPassword} exact={true}/>
-                        <Route component={PageNotFound}/>
+                    <PublicRoute path="/" component={Home} exact={true}/>
+                    <PrivateRoute path="/orders" component={AllOrders} exact={true}/>
+                    <PublicRoute path= "/menu" component={Menu} exact={true}/>
+                    <PublicRoute path="/contactus" component={ContactUs} exact={true}/>
+                    <PrivateRoute path= "/user/menu" component={Menu} exact={true}/>
+                    <PrivateRoute path= "/employee/menu" component={EmployeeMenu} exact={true}/>
+                    <PrivateRoute path="/employees" component={Employees} exact={true}/>
+                    <Route path="/reset/:token" component={ResetPassword} exact={true}/>
+                    <PublicRoute path="/forgotpassword" component={ForgotPassword} exact={true}/>
+                    <Route component={PageNotFound}/>
                 </Switch>
                 <Footer/>
-            </Auth.Provider>
-    </BrowserRouter>
+        </BrowserRouter>
     )
 }
 

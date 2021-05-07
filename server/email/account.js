@@ -20,8 +20,16 @@ const sendResetMail = (email, link, token)=>{
     })
 }
 
-
+const sendContactUsMail = ({email, mobile, query}) =>{
+    sgMail.send({
+        to: 'abhishekdwivedi037@gmail.com',
+        from: 'abhishekdwivedi037@gmail.com',
+        subject: 'Serve Me - Contact Us',
+        text: `Email: ${email} Mobile Number: ${mobile} and Query: ${query}`
+    })
+}
 module.exports = {
     sendWelcomeMail,
-    sendResetMail
+    sendResetMail,
+    sendContactUsMail
 }

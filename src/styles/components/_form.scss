@@ -1,71 +1,177 @@
-.form{
-    padding: 0;
-    font-size: $font-size-m;
+.form {
+  margin: auto;
+  padding: $size-xl 0;
+  text-align: center;
+  & .menu_item-image {
+    margin: $size-s auto;
+    width: 200px;
+    height: 200px;
+  }
+  &.reset {
+    border-radius: $size-s;
+    width: 50%;
+    height: 20rem;
+    background: linear-gradient(to top right, #c9ffbf, #ffafbd);
+    & .form__element,
+    .form__label {
+      width: 100%;
+    }
+  }
 }
 
-.form__element{
-    padding: $size-m;
-    display: flex;
-    justify-content: space-evenly;
+.form-field {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.form-upload {
+  width: 85%;
+  font-size: $font-size-s;
 }
 
-.form__label{
-    font-weight: bold;
-    text-align: end;
-    font-size: $font-size-m;
-    color: #000000;
-    width: 20%;
+.form-image {
+  width: 175px;
+  height: 175px;
+  border-radius: 50%;
+  border: 2px solid black;
+  margin: 0 auto;
+}
+.form-tab {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  border-bottom: 1px solid #000000;
+  & h1 {
     padding: $size-s;
-}
-
-.form__input{
-    background-color: #84a6e6;
-    color: #000;
-    font-size: $font-size-m;
-    width: 40%;
-    outline: none;
+    transition: 0.25s;
+    font-weight: 200;
+    opacity: 0.5;
     border: none;
-    border-bottom: .3rem solid darken(darkblue, 10%);
-    padding: $size-s;
+    position: relative;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  & .active {
+    opacity: 1;
+    background: #fcfbf696;
+    text-decoration: underline;
+    box-shadow: 0rem 0rem 0.5rem 0.2rem #000000;
+  }
 }
 
-.form__input--textarea{
-    height: 10rem;
-    size: $font-size-m;
-}
-
-.form__msg{
-    color: #2e27b0;
-    justify-content: center;
-    text-align: center;
-}
-
-.form__link{
-    text-align: center;
+.form__radio {
+  margin: $size-m 0;
+  display: flex;
+  justify-content: space-around;
+  & span {
+    display: flex;
+    align-items: center;
+  }
+  & input {
     margin: 0;
-    padding: $size-s;
-    font-size: $font-size-m;
+    width: 20px;
+  }
+}
+.profile-initials {
+  display: inline-block;
+  margin: $size-m 0;
+  box-shadow: 0.1rem 0.1rem 1rem 0.5rem #727272;
+  user-select: none;
+  padding: 2.5rem;
+  font-size: $font-size-l;
+  border-radius: 50%;
+  background: linear-gradient(to right, #faffd1, #a1ffce);
+  width: auto;
 }
 
-.form__fieldSet{
-    border : 2px solid black;
-    margin: $size-s;
+.profile-label {
+  display: block;
+  // background: #ffffff;
+  width: auto;
+  text-align: left;
+  padding: $size-m;
+  font-size: $font-size-s;
+  font-weight: bold;
+}
+.form__element {
+  text-align: center;
 }
 
-@media screen and (max-width : 650px){
-    .form__element{
-        display: block;
-        text-align: center;
+.form__label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: $font-size-s;
+  font-weight: 600;
+  color: #000000;
+}
+
+.form__input {
+  margin: $size-m auto;
+  display: block;
+  background-color: #e8eaec;
+  color: #000;
+  font-size: $font-size-s;
+  width: 80%;
+  outline: none;
+  border: none;
+  border-radius: $size-s;
+  padding: $size-s;
+  transition: 0.25s;
+  &:focus {
+    box-shadow: 0rem 0rem 0.5rem 0.2rem #000000;
+  }
+}
+
+.form__input--textarea {
+  height: 10rem;
+  size: $font-size-m;
+}
+
+.form__msg {
+  color: #ff0000;
+  background-color: #ffffff;
+  margin-top: -10px;
+  justify-content: center;
+  text-align: center;
+}
+
+.form__link {
+  display: block;
+  padding: $size-s;
+  font-size: $font-size-s;
+  color: #ff0000;
+  &:visited {
+    color: #ff0000;
+  }
+}
+
+.form__fieldSet {
+  overflow: hidden;
+  font-size: $font-size-m;
+  border: 2px solid #000000;
+  margin: $size-s;
+  max-height: 0;
+  transition: 0.25s;
+  &.open {
+    max-height: 400px;
+  }
+}
+
+@media screen and (max-width: $size-mobile) {
+  .form.reset {
+    width: 90%;
+    & .form__element {
+      display: block;
     }
-    .form__label{
-        display: block;
-        width: 90%;
-        text-align: start;
-    }
-    .form__input{
-        width: 90%;
-    }
-    .form__link{
-        font-size: $font-size-m;
-    }
+  }
+  .form-image {
+    width: 150px;
+    height: 150px;
+  }
+  .form__input {
+    padding: $size-m $size-s;
+    width: 85%;
+  }
 }

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {useParams, useHistory} from 'react-router-dom';
 import axios from 'axios';
 import sweet from 'sweetalert2';
+import {RiLockPasswordLine} from 'react-icons/ri'
 
 const ResetPassword =() =>{
     const [password, setPassword] = useState('')
@@ -34,26 +35,17 @@ const ResetPassword =() =>{
         else{
             axios.patch('/user/me', {password}, {
                 headers: {'Authorization' : `Bearer ${token}`}
-            }).then(data=> sweet.fire({title: 'Password Updated', icon: 'success'}).then(ok=>history.push('/login')))
+            }).then(data=> sweet.fire({title: 'Password Updated', icon: 'success'}).then(ok=>history.push('/')))
             .catch(err=>sweet.fire({title: 'Link Expired', icon: 'info'}).then(ok=>history.push('/')))
         }
     }
     return (
-        <div className="page">
-            <h1 className="page__title">New Password</h1>
-            <form className="form" onSubmit={submit}>
-            <div className="form__element">
-                    <label className="form__label">Password*:</label>
-                    <input type='password' placeholder="********" value={password}  className="form__input" required={true} minLength={7} maxLength={16} onChange={(e)=>setPassword(e.target.value)}/>
-                </div>
-                <div className="form__element">
-                    <label className="form__label">Confirm Password*:</label>
-                    <input type='password' placeholder="********" value={confirmPassword} required={true} minLength={7} maxLength={16}  className="form__input" onChange={(e)=>setConfirmPassword(e.target.value)}/>
-                </div>
+        <div className="page-content">
+            <form className="form reset" onSubmit={submit}>
+                <input type='password' placeholder="New Password" value={password}  className="form__input" required={true} minLength={7} maxLength={16} onChange={(e)=>setPassword(e.target.value)}/>
+                <input type='password' placeholder="Confirm Password" value={confirmPassword} required={true} minLength={7} maxLength={16}  className="form__input" onChange={(e)=>setConfirmPassword(e.target.value)}/>
                 <p className="form__msg">{msg}</p>
-                <div className="button">
-                    <button className="button__element">Save</button>
-                </div>
+                <button className="button__auth">Save</button>
             </form>
         </div>
     )
